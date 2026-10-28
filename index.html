@@ -1,0 +1,332 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Eric Tatsing Kuetche · Data Analyst</title>
+<meta name="description" content="Data analyst et économiste : fiabilisation de données, SQL, tableaux de bord Power BI, cartographie QGIS et évaluation d'impact. Recherche d'alternance en Île-de-France.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Public+Sans:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --fond:#EEF2EF; --papier:#FBFCFB; --encre:#18232B; --encre-2:#4A5862;
+  --sarcelle:#0F6E6E; --ocre:#B07B12; --trait:#CBD3CE;
+  --mesure:66ch;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --fond:#121A1E; --papier:#18232A; --encre:#E6ECEA; --encre-2:#A6B3B8;
+    --sarcelle:#4FB3AE; --ocre:#D9A441; --trait:#2E3B42;
+  }
+}
+:root[data-theme="dark"]{
+  --fond:#121A1E; --papier:#18232A; --encre:#E6ECEA; --encre-2:#A6B3B8;
+  --sarcelle:#4FB3AE; --ocre:#D9A441; --trait:#2E3B42;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+body{margin:0;background:var(--fond);color:var(--encre);
+  font:400 1.0625rem/1.6 "Public Sans",system-ui,sans-serif}
+h1,h2,h3{font-family:"Bricolage Grotesque",system-ui,sans-serif;font-weight:700;line-height:1.12;margin:0}
+a{color:var(--sarcelle);text-underline-offset:3px}
+a:focus-visible{outline:3px solid var(--ocre);outline-offset:3px;border-radius:4px}
+img{max-width:100%;display:block}
+.page{max-width:1120px;margin:0 auto;padding:0 24px}
+@media (max-width:600px){.page{padding:0 16px}}
+
+/* En-tête */
+.entete{display:flex;justify-content:space-between;align-items:center;padding:22px 0;gap:16px;flex-wrap:wrap}
+.entete .nom{font-family:"Bricolage Grotesque",system-ui,sans-serif;font-weight:700;font-size:1.05rem;color:var(--encre);text-decoration:none}
+.entete nav{display:flex;gap:22px;flex-wrap:wrap}
+.entete nav a{color:var(--encre-2);text-decoration:none;font-size:.95rem}
+.entete nav a:hover{color:var(--encre)}
+
+/* Accroche */
+.accroche{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:center;padding:48px 0 72px;border-bottom:1px solid var(--trait)}
+.accroche h1{font-size:clamp(2.2rem,5vw,3.9rem);letter-spacing:-.02em;max-width:16ch}
+.accroche .intro{max-width:54ch;color:var(--encre-2);font-size:1.13rem;margin:22px 0 14px}
+.dispo{display:inline-flex;align-items:center;gap:10px;margin:0 0 28px;font-weight:600;font-size:.98rem}
+.dispo::before{content:"";width:10px;height:10px;border-radius:50%;background:var(--sarcelle);box-shadow:0 0 0 4px color-mix(in srgb,var(--sarcelle) 22%,transparent)}
+.actions{display:flex;gap:12px;flex-wrap:wrap}
+.btn{display:inline-block;padding:12px 20px;border-radius:999px;font-weight:600;text-decoration:none;font-size:.98rem}
+.btn-plein{background:var(--sarcelle);color:var(--papier)}
+.btn-trait{border:1.5px solid var(--encre);color:var(--encre)}
+
+/* Le pipeline : élément signature */
+.pipeline{background:var(--papier);border:1px solid var(--trait);border-radius:16px;padding:26px 26px 18px;margin:0}
+.pipeline h2{font-size:1.05rem;margin-bottom:18px}
+.pipeline ol{list-style:none;margin:0;padding:0;position:relative}
+.pipeline ol::before{content:"";position:absolute;left:15px;top:12px;bottom:12px;width:2px;background:var(--trait)}
+.pipeline li{position:relative;display:grid;grid-template-columns:32px 1fr;gap:14px;padding:0 0 18px;
+  opacity:0;transform:translateY(6px);animation:etape .5s ease-out forwards}
+.pipeline li:nth-child(1){animation-delay:.15s}.pipeline li:nth-child(2){animation-delay:.45s}
+.pipeline li:nth-child(3){animation-delay:.75s}.pipeline li:nth-child(4){animation-delay:1.05s}
+.pipeline .pastille{width:32px;height:32px;border-radius:50%;display:grid;place-items:center;
+  background:var(--fond);border:2px solid var(--sarcelle);color:var(--sarcelle);font-weight:700;font-size:.85rem;position:relative}
+.pipeline li:last-child .pastille{background:var(--sarcelle);color:var(--papier)}
+.pipeline .chiffre{font-family:"Bricolage Grotesque",system-ui,sans-serif;font-weight:700;font-size:1.45rem;line-height:1.1;display:block}
+.pipeline .quoi{color:var(--encre-2);font-size:.93rem}
+.pipeline figcaption{font-size:.86rem;color:var(--encre-2);border-top:1px dashed var(--trait);padding-top:12px}
+@keyframes etape{to{opacity:1;transform:none}}
+@media (max-width:860px){.accroche{grid-template-columns:1fr;gap:36px;padding:32px 0 56px}}
+
+/* Sections */
+section{padding:72px 0;border-bottom:1px solid var(--trait)}
+.titre-section{display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap;margin-bottom:36px}
+.titre-section h2{font-size:clamp(1.8rem,3.4vw,2.5rem);letter-spacing:-.01em}
+.titre-section p{color:var(--encre-2);margin:0;max-width:48ch}
+
+/* Études de cas */
+.cas{display:grid;grid-template-columns:5fr 6fr;gap:44px;align-items:center;padding:36px 0}
+.cas + .cas{border-top:1px dashed var(--trait)}
+.cas:nth-of-type(even) .cas-visuel{order:-1}
+.cas .cadre{font-size:.9rem;color:var(--ocre);font-weight:600;margin:0 0 8px}
+.cas h3{font-size:1.55rem;margin-bottom:16px;max-width:26ch}
+.cas dl{margin:0 0 18px;display:grid;grid-template-columns:auto 1fr;gap:6px 16px;max-width:var(--mesure)}
+.cas dt{font-weight:600}
+.cas dd{margin:0;color:var(--encre-2)}
+.cas .resultat{border-left:3px solid var(--ocre);padding:4px 0 4px 14px;margin:0 0 18px;max-width:var(--mesure)}
+.outils{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 16px;padding:0;list-style:none}
+.outils li{font-size:.84rem;padding:3px 10px;border-radius:999px;background:var(--papier);border:1px solid var(--trait);color:var(--encre-2)}
+.lien-projet{font-weight:600}
+.cas-visuel{background:#fff;border:1px solid var(--trait);border-radius:14px;padding:10px;overflow:hidden}
+.cas-visuel img{border-radius:8px;width:100%}
+@media (max-width:860px){.cas{grid-template-columns:1fr;gap:24px}.cas:nth-of-type(even) .cas-visuel{order:0}}
+
+/* Compétences */
+.competences{display:grid;grid-template-columns:repeat(3,1fr);gap:40px}
+.competences h3{font-size:1.12rem;margin-bottom:6px}
+.competences .role{color:var(--encre-2);font-size:.93rem;margin:0 0 12px;max-width:34ch}
+.competences ul{margin:0;padding:0;list-style:none}
+.competences li{padding:8px 0;border-top:1px solid var(--trait);display:flex;justify-content:space-between;gap:12px}
+.competences li span{color:var(--encre-2);font-size:.9rem;text-align:right}
+@media (max-width:860px){.competences{grid-template-columns:1fr;gap:32px}}
+
+/* Parcours */
+.parcours{display:grid;grid-template-columns:1fr 1fr;gap:56px}
+.parcours h3{font-size:1.2rem;margin-bottom:18px}
+.chrono{list-style:none;margin:0;padding:0;border-left:2px solid var(--trait)}
+.chrono li{position:relative;padding:0 0 26px 22px}
+.chrono li::before{content:"";position:absolute;left:-7px;top:6px;width:12px;height:12px;border-radius:50%;background:var(--fond);border:2px solid var(--sarcelle)}
+.chrono .quand{font-size:.88rem;color:var(--ocre);font-weight:600}
+.chrono strong{display:block;font-size:1.03rem}
+.chrono .ou{color:var(--encre-2);font-size:.95rem}
+.chrono ul{margin:8px 0 0;padding-left:18px;color:var(--encre-2);font-size:.95rem;max-width:58ch}
+.chrono ul li{padding:0 0 4px;border:none}
+.chrono ul li::before{display:none}
+@media (max-width:760px){.parcours{grid-template-columns:1fr;gap:24px}}
+
+/* Autres travaux */
+.autres{list-style:none;margin:0;padding:0}
+.autres li{display:grid;grid-template-columns:minmax(200px,1fr) 2fr auto;gap:24px;padding:20px 0;border-top:1px solid var(--trait);align-items:baseline}
+.autres li:last-child{border-bottom:1px solid var(--trait)}
+.autres h3{font-size:1.1rem}
+.autres p{margin:0;color:var(--encre-2);max-width:var(--mesure)}
+.autres .contexte{font-size:.9rem;color:var(--encre-2);white-space:nowrap}
+@media (max-width:760px){.autres li{grid-template-columns:1fr;gap:6px}.autres .contexte{white-space:normal}}
+
+/* Contact */
+.contact{padding:80px 0 56px;border-bottom:none}
+.contact h2{font-size:clamp(1.9rem,4vw,3rem);max-width:22ch;margin-bottom:18px}
+.contact p{color:var(--encre-2);max-width:58ch}
+.liens{display:flex;flex-wrap:wrap;gap:12px 28px;margin-top:26px;font-weight:600}
+footer{padding:28px 0 40px;color:var(--encre-2);font-size:.88rem}
+</style>
+</head>
+<body>
+<div class="page">
+
+<header class="entete">
+  <a class="nom" href="#">Eric Tatsing Kuetche</a>
+  <nav aria-label="Sections">
+    <a href="#projets">Projets</a>
+    <a href="#competences">Compétences</a>
+    <a href="#parcours">Parcours</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<main>
+<div class="accroche">
+  <div>
+    <h1>Des données dispersées aux décisions qui en dépendent.</h1>
+    <p class="intro">Data analyst et économiste de formation, je fiabilise les données, je construis les tableaux de bord et je mesure ce que les actions changent vraiment. Mon double profil me permet de partir de la question métier avant de choisir l'outil.</p>
+    <p class="dispo">Je recherche une alternance Data Analyst en Île-de-France</p>
+    <div class="actions">
+      <a class="btn btn-plein" href="#projets">Voir mes projets</a>
+      <a class="btn btn-trait" href="cv.pdf">Télécharger mon CV</a>
+    </div>
+  </div>
+
+  <figure class="pipeline">
+    <h2>Ma méthode, appliquée à un vrai journal ServiceNow</h2>
+    <ol>
+      <li><span class="pastille">1</span><div><span class="chiffre">141 712 lignes</span><span class="quoi">un journal brut, où une ligne n'est pas un incident</span></div></li>
+      <li><span class="pastille">2</span><div><span class="chiffre">24 918 incidents</span><span class="quoi">un modèle propre : une ligne par ticket, dates converties</span></div></li>
+      <li><span class="pastille">3</span><div><span class="chiffre">9 contrôles</span><span class="quoi">3 712 incidents signalés à fiabiliser avant tout calcul</span></div></li>
+      <li><span class="pastille">4</span><div><span class="chiffre">3 vues de pilotage</span><span class="quoi">prêtes à brancher dans Power BI</span></div></li>
+    </ol>
+    <figcaption>Résultat : 78 % des tickets respectent leur délai quand la première équipe les traite, contre 25 % après trois réaffectations.</figcaption>
+  </figure>
+</div>
+
+<section id="projets" aria-labelledby="h-projets">
+  <div class="titre-section">
+    <h2 id="h-projets">Projets</h2>
+    <p>Chaque projet part d'une question concrète. Le code, la démarche et les résultats sont publiés sur GitHub.</p>
+  </div>
+
+  <article class="cas">
+    <div>
+      <p class="cadre">DU Data Analytics, Paris 1 Panthéon-Sorbonne</p>
+      <h3>Piloter les incidents informatiques d'une DSI avec SQL</h3>
+      <dl>
+        <dt>Question</dt><dd>Comment passer d'un journal brut d'outil de ticketing à des indicateurs qui aident une équipe IT à prioriser ?</dd>
+        <dt>Données</dt><dd>Journal réel et anonymisé d'une instance ServiceNow : 141 712 événements pour 24 918 incidents.</dd>
+        <dt>Méthode</dt><dd>Conversion des dates, gestion des valeurs manquantes, table de quarantaine, neuf contrôles de cohérence dans une vue rejouable, indicateurs de délai et de SLA.</dd>
+      </dl>
+      <p class="resultat">63,4 % des SLA respectés, une médiane de 22 h contre une moyenne de 178 h, et un levier clair : limiter les réaffectations entre équipes.</p>
+      <ul class="outils"><li>SQL</li><li>SQLite</li><li>Contrôle qualité</li><li>Indicateurs</li></ul>
+      <a class="lien-projet" href="https://github.com/EricTatsing/sql-pilotage-incidents-it">Voir le projet sur GitHub</a>
+    </div>
+    <div class="cas-visuel"><img src="sla_par_reaffectation.png" alt="Résultat SQL : taux de SLA respecté selon le nombre de réaffectations d'un incident" loading="lazy"></div>
+  </article>
+
+  <article class="cas">
+    <div>
+      <p class="cadre">Stage de 6 mois, Région Nouvelle-Aquitaine</p>
+      <h3>Piloter les aides régionales à l'économie circulaire</h3>
+      <dl>
+        <dt>Besoin</dt><dd>Le suivi des subventions était dispersé dans une vingtaine de fichiers Excel, sans vue d'ensemble par territoire ni par filière.</dd>
+        <dt>Méthode</dt><dd>Consolidation automatisée en Python, rattachement de chaque projet à son intercommunalité, modèle en étoile et une trentaine de mesures DAX, cartes QGIS.</dd>
+        <dt>Usage</dt><dd>Les premiers tableaux de bord du service, utilisés pour présenter le suivi des aides lors d'une conférence territoriale.</dd>
+      </dl>
+      <p class="resultat">Environ 1 000 porteurs de projets réunis dans une base unique, et des cartes des aides par département et par EPCI.</p>
+      <ul class="outils"><li>Power BI</li><li>DAX</li><li>Power Query</li><li>QGIS</li><li>Python</li></ul>
+      <a class="lien-projet" href="https://github.com/EricTatsing/powerbi-qgis-suivi-subventions">Voir le projet sur GitHub</a>
+    </div>
+    <div class="cas-visuel"><img src="carte_aides_departements.png" alt="Carte QGIS des aides régionales par département en Nouvelle-Aquitaine" loading="lazy"></div>
+  </article>
+</section>
+
+<section id="competences" aria-labelledby="h-competences">
+  <div class="titre-section">
+    <h2 id="h-competences">Compétences</h2>
+    <p>Classées par étape du travail sur la donnée, avec mon niveau réel.</p>
+  </div>
+  <div class="competences">
+    <div>
+      <h3>Collecter et fiabiliser</h3>
+      <p class="role">Rendre une donnée brute exploitable et digne de confiance.</p>
+      <ul>
+        <li>SQL <span>requêtes, jointures, vues</span></li>
+        <li>Python, pandas <span>projets professionnels</span></li>
+        <li>Power Query <span>projets professionnels</span></li>
+        <li>Excel avancé <span>quotidien</span></li>
+      </ul>
+    </div>
+    <div>
+      <h3>Analyser et mesurer</h3>
+      <p class="role">Répondre à la question posée, et dire à quel point on peut s'y fier.</p>
+      <ul>
+        <li>Statistiques, économétrie <span>avancé</span></li>
+        <li>Évaluation d'impact <span>projets professionnels</span></li>
+        <li>Stata, R, EViews <span>projets universitaires</span></li>
+        <li>scikit-learn, PySpark <span>en formation</span></li>
+      </ul>
+    </div>
+    <div>
+      <h3>Restituer et piloter</h3>
+      <p class="role">Mettre le bon indicateur sous les yeux de la bonne personne.</p>
+      <ul>
+        <li>Power BI, DAX <span>projets professionnels</span></li>
+        <li>QGIS <span>projets professionnels</span></li>
+        <li>MS Project, cadre logique <span>gestion de projet</span></li>
+        <li>Anglais <span>B1–B2</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="parcours" aria-labelledby="h-parcours">
+  <div class="titre-section"><h2 id="h-parcours">Parcours</h2></div>
+  <div class="parcours">
+    <div>
+      <h3>Expériences</h3>
+      <ol class="chrono">
+        <li><span class="quand">Stage, 6 mois</span><strong>Stagiaire data</strong><span class="ou">Région Nouvelle-Aquitaine, Service Déchets &amp; Économie Circulaire, Bordeaux</span>
+          <ul>
+            <li>Premiers tableaux de bord Power BI du service</li>
+            <li>Consolidation automatisée de plus de 20 fichiers Excel, environ 70 % de temps gagné</li>
+            <li>Analyse d'impact des aides sur 52 intercommunalités</li>
+            <li>Cartographie QGIS et premier rapport d'activité du service</li>
+          </ul></li>
+        <li><span class="quand">Mission</span><strong>Assistant chef de projet</strong><span class="ou">Travaux Publics Sans Frontières (ONG SUEZ), Clermont-Ferrand</span>
+          <ul>
+            <li>Projet d'eau potable en milieu rural au Cameroun</li>
+            <li>Analyse de la première phase, montage financier des phases suivantes, dossiers bailleurs</li>
+          </ul></li>
+        <li><span class="quand">Recherche</span><strong>Assistant de recherche data</strong><span class="ou">CERDI, Université Clermont Auvergne</span>
+          <ul>
+            <li>Base de données comparative de l'offre universitaire des pays de l'UEMOA</li>
+          </ul></li>
+      </ol>
+    </div>
+    <div>
+      <h3>Formation</h3>
+      <ol class="chrono">
+        <li><span class="quand">2026 – 2028</span><strong>Mastère Data &amp; IA</strong><span class="ou">HETIC, en alternance (3 semaines en entreprise, 1 semaine à l'école)</span></li>
+        <li><span class="quand">2025 – 2026</span><strong>DU Data Analytics</strong><span class="ou">Université Paris 1 Panthéon-Sorbonne</span></li>
+        <li><span class="quand">2024 – 2026</span><strong>Double M2 Analyse de projet et Analyse économique</strong><span class="ou">CERDI, Université Clermont Auvergne</span></li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section aria-labelledby="h-autres">
+  <div class="titre-section">
+    <h2 id="h-autres">Autres travaux</h2>
+    <p>Économétrie, développement et gestion de projet. Publication sur GitHub au fur et à mesure.</p>
+  </div>
+  <ul class="autres">
+    <li>
+      <h3>Évaluation d'impact des aides</h3>
+      <p>Différence-de-différences et analyse dose-réponse sur 52 intercommunalités, pour mesurer si les territoires financés progressent plus que les autres.</p>
+      <span class="contexte">Stage Région</span>
+    </li>
+    <li>
+      <h3>ÉcoPratik</h3>
+      <p>Prototype de plateforme d'apprentissage pour étudiants en économie en Afrique, avec exercices Python et R exécutés dans le navigateur.</p>
+      <span class="contexte">Projet personnel</span>
+    </li>
+    <li>
+      <h3>Appariement par score de propension</h3>
+      <p>Estimation d'un effet causal sur les données d'enquête Afrobaromètre.</p>
+      <span class="contexte">Master, CERDI</span>
+    </li>
+    <li>
+      <h3>Électrification solaire au Tchad</h3>
+      <p>Étude de management de projet : cadre logique, découpage WBS, planning sous MS Project et analyse des risques.</p>
+      <span class="contexte">Master, CERDI</span>
+    </li>
+  </ul>
+</section>
+
+<section id="contact" class="contact" aria-labelledby="h-contact">
+  <h2 id="h-contact">Vous cherchez un alternant data analyst&nbsp;?</h2>
+  <p>Je suis disponible pour une alternance au rythme de 3 semaines en entreprise et 1 semaine à l'école, en Île-de-France. Je serai ravi d'échanger sur vos besoins.</p>
+  <div class="liens">
+    <a href="mailto:erictatsing4@gmail.com">erictatsing4@gmail.com</a>
+    <a href="https://www.linkedin.com/in/VOTRE-PROFIL">LinkedIn</a>
+    <a href="https://github.com/EricTatsing">GitHub</a>
+    <a href="cv.pdf">CV en PDF</a>
+  </div>
+</section>
+</main>
+
+<footer>Eric Tatsing Kuetche · Les captures de projets professionnels sont anonymisées.</footer>
+</div>
+</body>
+</html>
